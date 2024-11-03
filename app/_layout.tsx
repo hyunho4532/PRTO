@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react';
 import 'react-native-reanimated';
 import * as Font from 'expo-font';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import SplashScreen from './splash';
+import SplashScreen from './(splash)';
 
 
 export default function RootLayout() {
