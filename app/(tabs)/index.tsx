@@ -4,7 +4,7 @@ import { View } from 'react-native';
 export default function HomeScreen() {
   return (
     <View>
-      <Title>테스트입니다.</Title>
+      <Title fontSize='24' align='center'>테스트입니다.</Title>
     </View>
   );
 }
