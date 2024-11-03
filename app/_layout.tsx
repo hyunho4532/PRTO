@@ -1,14 +1,11 @@
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
-import * as SplashScreen from 'expo-splash-screen';
-import { useCallback, useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import 'react-native-reanimated';
 import * as Font from 'expo-font';
 import { useColorScheme } from '@/hooks/useColorScheme';
-import { Container } from '@/ui-kit/shared/Container';
-import { Title } from '@/ui-kit/shared/Title';
+import SplashScreen from './splash';
 
-SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 
@@ -35,19 +32,9 @@ export default function RootLayout() {
 
   }, []);
 
-  const onLayoutRootView = useCallback(async () => {
-    if (appIsReady) {
-      await SplashScreen.hideAsync();
-    }
-  }, [appIsReady]);
-
   if (!appIsReady) {
     return (
-      <Container justifyContent='center' alignItems='center'
-        onLayout={onLayoutRootView}>
-        <Title fontSize='24'>PRTO</Title>
-        <Title fontSize='14'>날씨에 따라 옷차림을 추천해드립니다.</Title>
-      </Container>
+      <SplashScreen appIsReady={appIsReady} />
     )
   }
 
