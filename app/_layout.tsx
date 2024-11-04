@@ -6,12 +6,15 @@ import { useColorScheme } from '@/hooks/useColorScheme';
 import * as Font from 'expo-font';
 import * as Splash from 'expo-splash-screen';
 import SplashScreen from './splash';
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 
 Splash.preventAutoHideAsync();
 
 export default function RootLayout() {
 
   const [appIsReady, setAppIsReady] = useState(false);
+
+  const queryClient = new QueryClient();
 
   const colorScheme = useColorScheme();
   
@@ -41,11 +44,13 @@ export default function RootLayout() {
   }
   
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
         <Stack>
           <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" />
         </Stack>
-    </ThemeProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
