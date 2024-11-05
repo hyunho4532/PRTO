@@ -3,6 +3,7 @@ import { View } from 'react-native';
 import { useQuery } from '@tanstack/react-query';
 import { useFetchWeather } from './api/fetch';
 import { Container } from '@/ui-kit/shared/Container';
+import { calculateCelsiusFromKelvin } from '@/ui-kit/calcul';
 
 /** 가장 메인이자 홈 스크린 */
 export default function HomeScreen() {
@@ -25,7 +26,7 @@ export default function HomeScreen() {
         </Container>
         
         <Title fontSize='18' paddingTop='24' paddingLeft='16'>
-          🌤 현재 온도: {data.main.temp}
+          🌤 현재 온도: {calculateCelsiusFromKelvin(data.main.temp)}
         </Title>
 
         <Title fontSize='18' paddingTop='24' paddingLeft='16'>
